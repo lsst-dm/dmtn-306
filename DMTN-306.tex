@@ -1,0 +1,79 @@
+\documentclass[DM,lsstdraft,authoryear,toc]{lsstdoc}
+\input{meta}
+
+% Package imports go here.
+
+% Local commands go here.
+
+%If you want glossaries
+%\input{aglossary.tex}
+%\makeglossaries
+
+\title{Data Movement Model for the Vera C. Rubin Observatory}
+
+% This can write metadata into the PDF.
+% Update keywords and author information as necessary.
+\hypersetup{
+    pdftitle={Data Movement Model for the Vera C. Rubin Observatory},
+    pdfauthor={Fabio Hernandez},
+    pdfkeywords={}
+}
+
+% Optional subtitle
+% \setDocSubtitle{A subtitle}
+
+\author{%
+Fabio Hernandez
+}
+
+\setDocRef{DMTN-306}
+\setDocUpstreamLocation{\url{https://github.com/lsst-dm/dmtn-306}}
+
+\date{\vcsDate}
+
+% Optional: name of the document's curator
+% \setDocCurator{The Curator of this Document}
+
+\setDocAbstract{%
+The set of sky images recorded nightly by the camera mounted on the telescope of the Vera C. Rubin Observatory will be processed in facilities located on three continents. Data acquisition will take place at Cerro Pachón in the Andes mountains in Chile, where the observatory is located. A first copy of the raw image data set is stored at the summit site of the observatory and immediately transferred through dedicated network links to the archive site and the US Data Facility hosted at SLAC National Laboratory in California, USA.
+After an embargo period of a few days, the full image set is copied to the UK and French Data Facilities, where a third copy is located. During its 10 years in operation starting late 2025, annual processing campaigns across all images taken to date will be jointly performed by the three facilities, involving sophisticated algorithms to extract the physical properties of the celestial objects and producing science-ready images and catalogs. Data products 24 resulting from the processing campaigns at each facility will be sent to SLAC and combined to create a consistent Data Release, which is served to the scientific community for its science studies via Data Access Centers in the US and 27 Chile and Independent Data Access Centers elsewhere.
+In this contribution we present an overall view of how we leverage the tools selected for managing the movement of data among the Rubin processing and serving facilities, including Rucio and FTS3. We will also present the tools we developed to integrate Rucio’s data model and Rubin’s Data Butler, the software abstraction layer that mediates all access to storage by pipeline tasks that implement science algorithms.
+}
+
+% Change history defined here.
+% Order: oldest first.
+% Fields: VERSION, DATE, DESCRIPTION, OWNER NAME.
+% See LPM-51 for version number policy.
+\setDocChangeRecord{%
+  \addtohist{1}{YYYY-MM-DD}{Unreleased.}{Fabio Hernandez}
+}
+
+
+\begin{document}
+
+% Create the title page.
+\maketitle
+% Frequently for a technote we do not want a title page  uncomment this to remove the title page and changelog.
+% use \mkshorttitle to remove the extra pages
+
+% ADD CONTENT HERE
+% You can also use the \input command to include several content files.
+
+\appendix
+% Include all the relevant bib files.
+% https://lsst-texmf.lsst.io/lsstdoc.html#bibliographies
+\section{References} \label{sec:bib}
+\renewcommand{\refname}{} % Suppress default Bibliography section
+\bibliography{local,lsst,lsst-dm,refs_ads,refs,books}
+
+% Make sure lsst-texmf/bin/generateAcronyms.py is in your path
+\section{Acronyms} \label{sec:acronyms}
+\input{acronyms.tex}
+% If you want glossary uncomment below -- comment out the two lines above
+%\printglossaries
+
+
+
+
+
+\end{document}
