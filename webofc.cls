@@ -194,10 +194,10 @@
   pdfstartview={FitH 1000},
   \if@online
     colorlinks=true,
-    linkcolor=blue, citecolor=blue, filecolor=blue, urlcolor=blue
+    linkcolor=blue, citecolor=blue, filecolor=blue, urlcolor=blue,
   \else
     colorlinks=false,
-    linkcolor=black, citecolor=black, filecolor=black, urlcolor=black
+    linkcolor=black, citecolor=black, filecolor=black, urlcolor=black,
   \fi
 ]
 {hyperref}
