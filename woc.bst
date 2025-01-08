@@ -1760,6 +1760,7 @@ FUNCTION {inproceedings}
  format.note output
  format.eprint output
  format.url output
+ format.doi output.doinull
  fin.entry
 }
 FUNCTION {conference} { inproceedings }
