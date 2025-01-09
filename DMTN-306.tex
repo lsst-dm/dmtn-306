@@ -113,15 +113,15 @@ Only files that require replication to another facility are registered with Ruci
 \subsection{Ingestion at reception}
 \label{ingestion}
 
-FTS notifies Rucio about the completion of individual file transfers. Rubin's \texttt{ctrl\_rucio\_ingest}\footnote{https://github.com/lsst-dm/ctrl\_rucio\_ingest}, an extension to Rucio's Hermes daemon, uses Kafka as a mechanism to signal the destination Rubin facility that a new file was replicated and to take appropriate actions.
+FTS notifies Rucio about the completion of individual file transfers. Rubin's \texttt{HermesK}\footnote{https://github.com/lsst-dm/ctrl\_rucio\_ingest}, which is a modification of Rucio's Hermes daemon, filters messages and uses Kafka as a mechanism to signal the destination Rubin facility that a new file was replicated and to take appropriate actions.
 
-Messages distributed through Rubin's Kafka control-plane include Rubin-specific metadata. Those messages are received by Rubin's \texttt{ctrl\_ingestd},\footnote{https://github.com/lsst-dm/ctrl\_ingestd} a daemon running at each destination facility responsible for ingesting newly replicated files into the local Butler repository.
+Messages distributed through Rubin's Kafka control-plane include Rubin-specific metadata. Those messages are received by Rubin's \texttt{ingestd}\footnote{https://github.com/lsst-dm/ctrl\_ingestd}, a daemon running at each destination facility responsible for ingesting newly replicated files into the local Butler repository.
 
-Each facility only receives notifications about files successfully replicated to the storage endpoints it operates. This is achieved by following a simple convention: the name of Kafka topic the notification is sent to is named after the name of the Rucio storage element. Each facility's \texttt{ctrl\_ingestd} is configured to only monitor Kafka messages specifically targeted to the facility's RSEs (see figure \ref{fig:kafka-control-plane}).
+Each facility only receives notifications about files successfully replicated to the storage endpoints it operates. This is achieved by following a simple convention: the name of Kafka topic the notification is sent to is named after the name of the Rucio storage element. Each facility's \texttt{ingestd} is configured to only monitor Kafka messages specifically targeted to the facility's RSEs (see figure \ref{fig:kafka-control-plane}).
 
 \begin{figure}[h]
 \includegraphics[width=0.9\textwidth, center]{images/HermesAndIngestd.png}
-\caption{Notifications about successful file transfers are emitted by \texttt{ctrl\_rucio\_ingest} using Kafka topics named after the destination RSE. At the receiving facility \texttt{ctrl\_ingestd} monitors those notifications and ingests the newly received file into the local Butler repository. The JSON-encoded, Rubin-specific metadata associated to the file when it was first registered into Rucio contains the details needed for ingestion.}
+\caption{Notifications about successful file transfers are emitted by \texttt{HermesK} using Kafka topics named after the destination RSE. At the receiving facility \texttt{ingestd} monitors those notifications and ingests the newly received file into the local Butler repository. The JSON-encoded, Rubin-specific metadata associated to the file when it was first registered into Rucio contains the details needed for ingestion.}
 \label{fig:kafka-control-plane}
 \end{figure}
 
