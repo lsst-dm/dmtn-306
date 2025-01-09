@@ -14,18 +14,21 @@ endif
 export TEXMFHOME ?= lsst-texmf/texmf
 
 # Add aglossary.tex as a dependancy here if you want a glossary (and remove acronyms.tex)
-$(DOCNAME).pdf: $(tex) meta.tex references.bib
+$(DOCNAME).pdf: $(tex) meta.tex authors.tex references.bib
 	pdflatex $(DOCNAME)
 	bibtex $(DOCNAME)
 	pdflatex $(DOCNAME)
 	pdflatex $(DOCNAME)
 
+authors.tex:  authors.yaml
+	python3 $(TEXMFHOME)/../bin/db2authors.py --mode webofc > authors.tex
 
 .PHONY: clean
 clean:
 	latexmk -c
 	rm -f $(DOCNAME).{bbl,glsdefs,pdf}
 	rm -f meta.tex
+	rm -f authors.tex
 
 .FORCE:
 
