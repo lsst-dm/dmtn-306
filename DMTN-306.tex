@@ -34,26 +34,30 @@
 }
 
 \abstract{%
-The set of sky images recorded nightly by the camera mounted on the telescope of the Vera C. Rubin Observatory will be processed in facilities located on three continents. Data acquisition will take place at Cerro Pachón in the Andes mountains in Chile, where the observatory is located. A first copy of the raw image data set is stored at the summit site of the observatory and immediately transferred through dedicated network links to the archive site and the US Data Facility hosted at SLAC National Laboratory in California, USA. After an embargo period of a few days, the full image set is copied to the UK and French Data Facilities, where a third copy is located.
+The sky images captured nightly by the camera on the Vera C. Rubin Observatory’s telescope will be processed across facilities on three continents. Data acquisition will occur at the observatory's location on Cerro Pachón in the Andes mountains of Chile. A first copy of the raw image data set is stored at the summit and immediately transmitted via dedicated network links to the archive site and the US Data Facility at SLAC National Laboratory in California. After a brief embargo period, the full dataset is transferred to the UK and French Data Facilities, where a third copy is maintained.
 
-During its 10 years in operation starting late 2025, annual processing campaigns across all images taken to date will be jointly performed by the three facilities, involving sophisticated algorithms to extract the physical properties of the celestial objects and producing science-ready images and catalogs. Data products resulting from the processing campaigns at each facility will be sent to SLAC and combined to create a consistent Data Release, which is served to the scientific community for its science studies via Data Access Centers in the US and Chile and Independent Data Access Centers elsewhere.
+Over its 10-year operational period, beginning in late 2025, annual processing campaigns will be conducted by the three facilities on all images collected to date. Sophisticated algorithms will extract the physical properties of celestial objects from these images, producing science-ready images and catalogs. Data products resulting from these processing campaigns will be sent to SLAC for integration into a consistent Data Release, which will be made available to the scientific community through Data Access Centers in the US and Chile, as well as Independent Data Access Centers elsewhere.
 
-In this contribution we present an overall view of how we leverage the tools selected for managing the movement of data among the Rubin processing and serving facilities, including Rucio and FTS3. We will also present the tools we developed to integrate Rucio's data model and Rubin's Data Butler, the software abstraction layer that mediates all access to storage by pipeline tasks that implement science algorithms.
+In this paper we present an overall view of how we leverage the tools selected for managing the movement of data among the Rubin processing and serving facilities, including Rucio and FTS3. We will also present the tools we developed to integrate Rucio's data model and Rubin's Data Butler, the software abstraction layer that mediates all access to storage by pipeline tasks that implement science algorithms.
 }
 
 \maketitle
 
 \section{Introduction}
 \label{introduction}
-\textcolor{red}{In this section we need to introduce the observatory and the LSST survey as its main mission \cite{Ivezic:2019}. Then we need to mention where data is recorded and where image processing is going to happen, to motivate why we need to care about data movement. The figure below serves to show the big picture.}
+The Vera C. Rubin Observatory's mission is to explore the universe by conducting the Legacy Survey of Space and Time (LSST), the largest-ever sky survey with an unprecedented wide-field imaging system. The observatory aims to capture deep, high-resolution images of the night sky, mapping the cosmos in order to investigate fundamental questions in astrophysics\cite{Ivezic:2019}.
+
+The sky images captured nightly by the observatory's camera will be processed across facilities on three continents. Data acquisition will occur at the observatory's location on Cerro Pachón in the Andes mountains of Chile. A first copy of the raw image data is stored at the summit and immediately transmitted via dedicated network links to the archive site and the US Data Facility at SLAC National Laboratory in California (see figure \ref{fig:data-facilities}). After a brief embargo period, the full dataset is transferred to the UK and French Data Facilities, where a third copy is maintained.
+
+Over its 10-year operational period, beginning in late 2025, annual processing campaigns will be conducted by the three facilities on all images collected to date. Sophisticated algorithms will extract the physical properties of celestial objects from these images, producing science-ready images and catalogs. Data products resulting from these processing campaigns will be sent to SLAC for integration into a consistent Data Release, which will be made available to the scientific community through Data Access Centers in the US and Chile, as well as Independent Data Access Centers elsewhere.
+
+This paper is structured as follows. In section \ref{section-data-movement-use-cases} we present the main data movement use cases we need to satisfy and section \ref{section-data-movement-tools} presents what tools were selected or developed and how they are composed to implement solutions to those use cases.
 
 \begin{figure}[h]
 \includegraphics[width=\textwidth]{images/RubinDataFacilities.png}
 \caption{Images flow from the Summit Site, where the telescope is located in Chile, to the Base Site and then to the three Rubin Data Facilities which collectively provide the computational capacity for processing the images taken by the Observatory for the duration of the survey.}
 \label{fig:data-facilities}
 \end{figure}
-
-This paper is structured as follows. In section \ref{section-data-movement-use-cases} we present the main data movement use cases we need to satisfy and section \ref{section-data-movement-tools} presents what tools were selected or developed and how they are composed to implement solutions to those use cases.
 
 \section{Data movement use cases}
 \label{section-data-movement-use-cases}
