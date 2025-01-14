@@ -93,7 +93,7 @@ Only files that require replication to another facility are registered with Ruci
 \subsection{Ingestion at reception}
 \label{ingestion}
 
-FTS notifies Rucio about the completion of individual file transfers. Rubin's \texttt{HermesK}\footnote{https://github.com/lsst-dm/ctrl\_rucio\_ingest}, which is a modification of Rucio's Hermes daemon, filters messages and uses Kafka as a mechanism to signal the destination Rubin facility that a new file was replicated and to take appropriate actions. Kafka was selected as a reliable message bus used for other purposes within the Rubin project. Its ordering guarantees are not strictly necessary in this application, but the ability to scale to multiple consumers may be needed as the number of files increases.
+FTS notifies Rucio about the completion of individual file transfers. Rubin's \texttt{HermesK}\footnote{https://github.com/lsst-dm/ctrl\_rucio\_ingest}, which is a modification of Rucio's Hermes daemon, filters messages and uses Kafka as a mechanism to signal the destination Rubin facility that a new file was replicated and to take appropriate actions. Kafka was selected as a reliable message bus used for other purposes within the Rubin project \citep[see e.g.,][]{2024SPIE13101E..1MF,2024SPIE13101E..18R}. Its ordering guarantees are not strictly necessary in this application, but the ability to scale to multiple consumers may be needed as the number of files increases.
 
 Messages distributed through Rubin's Kafka control-plane include Rubin-specific metadata. Those messages are received by Rubin's \texttt{ingestd}\footnote{https://github.com/lsst-dm/ctrl\_ingestd}, a daemon running at each destination facility responsible for ingesting newly replicated files into the local Butler repository.
 
