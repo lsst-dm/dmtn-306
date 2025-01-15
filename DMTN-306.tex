@@ -90,17 +90,17 @@ Rubin has developed the tool \texttt{rucio\_register}\footnote{\url{https://gith
 
 Only files that require replication to another facility are registered with Rucio. As a result, Rubin's instance of Rucio is aware only of files replicated across processing facilities. Files that are local to each facility and not subject to replication remain known only to that facility's Butler and are not registered in Rucio. Since the US Data Facility gets a complete copy of all final data products, by definition files that are not replicated are intermediates in the calculations that are not required to be persisted.
 
-\begin{figure}[h]
-\includegraphics[width=0.9\textwidth, center]{images/file_count_and_file_sizes.png}
-\caption{Number of files and total file sizes from a data preview processing run.}
-\label{fig:filecount}
-\end{figure}
-
 The pipeline processing generates many ancillary files in addition to pixel data.
 A data preview processing run \cite{10.1051/epjconf/20242950404} demonstrated that the number of JSON and YAML files is approximately of the same scale as the number of FITS and Parquet data files (see Fig.\ \ref{fig:filecount}).
 Given that the ancillary files are significantly smaller (sometimes a few kB per file) this can lead to very large file transfer overheads.
 To mitigate this problem we have modified the Butler infrastructure to allow the small files from a single processing run to be combined into one or more Zip files.
 These Zip files contain the Butler metadata necessary to allow the Butler to retrieve individual files whilst making a single file available to Rucio.
+
+\begin{figure}[h]
+\includegraphics[width=0.7\textwidth, center]{images/file_count_and_file_sizes.pdf}
+\caption{Number of files and total file sizes from a data preview processing run.}
+\label{fig:filecount}
+\end{figure}
 
 \subsection{Ingestion at reception}
 \label{ingestion}
