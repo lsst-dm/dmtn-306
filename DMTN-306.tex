@@ -31,18 +31,18 @@ The sky images captured nightly by the observatory's 3.2-gigapixel camera coveri
 
 Over its 10-year operational period, beginning in late 2025, annual processing campaigns will be conducted by the three facilities on all images collected to date. Sophisticated algorithms will extract measurements of celestial objects from these images, producing science-ready images and catalogs. Data products resulting from these processing campaigns will be sent to SLAC for integration into a consistent Data Release, which will be made available to the scientific community through Data Access Centers in the US and Chile, as well as Independent Data Access Centers elsewhere.
 
-The remaining of this paper is structured as follows. We present in section \ref{section-data-movement-use-cases} the main data movement use cases we need to satisfy and in section \ref{section-data-movement-tools} the tools that have been selected or developed and how they are composed to implement solutions to those use cases.
+The remainder of this paper is structured as follows. We present in section \ref{section-data-movement-use-cases} the main data movement use cases we need to satisfy and in section \ref{section-data-movement-tools} the tools that have been selected or developed and how they are composed to implement solutions to those use cases.
 
 \begin{figure}[h]
 \includegraphics[width=\textwidth]{images/RubinDataFacilities.png}
-\caption{Raw images flow from the Summit Site, where the telescope is located in Chile, to the Base Site and then to the Archive Center at SLAC through long haul network links specifically deployed for the needs of the Observatory. Data is transferred from the archive center to the European Data Facilities for archival and processing. The US, UK and France Data Facilities collectively provide the computational capacity for processing the images taken by the Observatory for the duration of the survey. The Observatory headquarters are located in Tucson, USA.}
+\caption{Raw images flow from the Summit Site, where the telescope is located in Chile, to the Base Site and then to the Archive Center at SLAC through long haul network links specifically deployed for the needs of the Observatory. Data is transferred from the Archive Center to the European Data Facilities for archival and processing. The US, UK and France Data Facilities collectively provide the computational capacity for processing the images taken by the Observatory for the duration of the survey. The Observatory headquarters are located in Tucson, USA.}
 \label{fig:data-facilities}
 \end{figure}
 
 \section{Data movement use cases}
 \label{section-data-movement-use-cases}
 
-A dataset of about 5 PB of additional data will be recorded by the instrument ever year, for a total of 50 PB of raw data accumulated over the duration of the survey. Processing the input dataset for the purpose of producing a data release generates approximately ten times the size of the input dataset, including intermediate datasets not part of the the published release.
+A dataset of about 5 PB of new image data will be recorded by the instrument every year, for a total of 50 PB of raw data accumulated over the duration of the survey. Processing the input dataset for the purpose of producing a data release generates approximately ten times the size of the input dataset, including intermediate datasets not part of the the published release.
 
 This section presents three distinct use cases for moving data among the data facilities used by the Rubin Observatory.
 
