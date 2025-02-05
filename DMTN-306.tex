@@ -34,7 +34,7 @@ Over its 10-year operational period, beginning in late 2025, annual processing c
 The remainder of this paper is structured as follows. We present in section \ref{section-data-movement-use-cases} the main data movement use cases we need to satisfy and in section \ref{section-data-movement-tools} the tools that have been selected or developed and how they are composed to implement solutions to those use cases.
 
 \begin{figure}[h]
-\includegraphics[width=\textwidth]{images/RubinDataFacilities.png}
+\includegraphics[width=\textwidth]{images/rubin_data_facilities.png}
 \caption{Raw images flow from the Summit Site, where the telescope is located in Chile, to the Base Site and then to the Archive Center at SLAC through long haul network links specifically deployed for the needs of the Observatory. Data is transferred from the Archive Center to the European Data Facilities for archival and processing. The US, UK and France Data Facilities collectively provide the computational capacity for processing the images taken by the Observatory for the duration of the survey. The Observatory headquarters are located in Tucson, USA.}
 \label{fig:data-facilities}
 \end{figure}
@@ -116,7 +116,7 @@ Each facility only receives notifications about files successfully replicated to
 In a complex distributed system such as this, having stateless daemons such as \texttt{ingestd}, idempotent transactions such as ingestion of file batches, and triggering off known synchronization points such as replication acknowledgement helps ensure a consistent, if conservative, view of the available data across multiple sites.
 
 \begin{figure}[h]
-\includegraphics[width=0.9\textwidth, center]{images/HermesAndIngestd.png}
+\includegraphics[width=0.9\textwidth, center]{images/hermes_and_ingestd.pdf}
 \caption{\texttt{HermesK} emits notifications about successful file transfers via Kafka topics named after the destination RSE. At the receiving facility \texttt{ingestd} monitors those notifications and ingests the newly received file into the local Butler repository. The JSON-encoded, Rubin-specific metadata associated to the file when it was first registered into Rucio contains the details needed for ingestion.}
 \label{fig:kafka-control-plane}
 \end{figure}
